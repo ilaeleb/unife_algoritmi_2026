@@ -1,6 +1,6 @@
 #include "utils.h"
 
-void push_end(node_t *head, uint32_t val) {
+void push_end(node_t *head, long double val) {
     node_t * current = head;
     while (current->next != NULL) {
         current = current->next;
@@ -12,7 +12,7 @@ void push_end(node_t *head, uint32_t val) {
     current->next->next = NULL;
 }
 
-void push_head(node_t *head, uint32_t val) {
+void push_head(node_t *head, long double val) {
     node_t * new_node;
     new_node = (node_t *) malloc(sizeof(node_t));
 
@@ -22,7 +22,7 @@ void push_head(node_t *head, uint32_t val) {
     head = new_node;
 }
 
-void ordered_insert(node_t *head, uint32_t val) {
+void ordered_insert(node_t *head, long double val) {
     node_t * current = head;
 
     // più grande del primo valore della lista
@@ -33,7 +33,7 @@ void ordered_insert(node_t *head, uint32_t val) {
 
     while (current != NULL) {
     
-        if (current->val = val) {
+        if (current->val == val) {
             current->count += 1;
             return;
         }
@@ -61,7 +61,7 @@ void print_list(node_t *head) {
     node_t * current = head;
 
     while (current != NULL) {
-        printf("%d\n", current->val);
+        printf("%Lf\n", current->val);
         current = current->next;
     }
 }
