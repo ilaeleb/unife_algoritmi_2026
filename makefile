@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Iinclude
-DEPS = include/utils.h 
-COMMON_OBJS = src/utils.o 
+DEPS = include/utils.h include/sort.h 
+COMMON_OBJS = src/utils.o src/sort.o 
 BIN_DIR = bin
 TARGETS = $(BIN_DIR)/spritz 
 
