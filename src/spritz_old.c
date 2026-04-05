@@ -5,8 +5,8 @@
 
 #include <utils.h>
 
-#define INPUT_FILE "input_output/input.txt"
-#define OUTPUT_FILE "input_output/output.txt"
+// #define INPUT_FILE "input_output/input.txt"
+// #define OUTPUT_FILE "input_output/output.txt"
 
 // #define INPUT_FILE "input.txt"
 // #define OUTPUT_FILE "output.txt"
