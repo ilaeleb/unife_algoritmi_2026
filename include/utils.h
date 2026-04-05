@@ -1,13 +1,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct node {
     long double val;
-    uint32_t count;
+    long int count;
     struct node *next;
 } node_t;
 

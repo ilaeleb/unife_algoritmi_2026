@@ -35,7 +35,7 @@ void ordered_insert(node_t *head, long double val) {
     
         if (current->val == val) {
             current->count += 1;
-            return;
+            break; 
         }
 
         if (current->next != NULL) {
@@ -47,11 +47,12 @@ void ordered_insert(node_t *head, long double val) {
                 new_node->count = 1;
                 new_node->next = current->next;
 
-                current->next = new_node;                
+                current->next = new_node; 
+                break;               
             }
         } else {
             push_end(head, val);
-            return;            
+            break;            
         }
         current = current->next;
     }
