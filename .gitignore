@@ -53,10 +53,7 @@ dkms.conf
 
 # debug information files
 *.dwo
-input.txt
-output.txt
 
-src/output.txt
-src/input.txt
-src/spritz_es.c
-src/input.txt
+*_es.c
+debug/
+bin/
