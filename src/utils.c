@@ -66,3 +66,11 @@ void print_list(node_t *head) {
         current = current->next;
     }
 }
+
+void print_array(long double *array, uint32_t size) {
+    uint32_t i;
+    for (i = 0; i < size; i++) {
+        printf("%.2Lf ", array[i]);
+    }
+    printf("\n");
+}
