@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include <windows.h>
+#include <stdint.h>
 
 #include <utils.h>
+#include <sort.h>
 
 // #define INPUT_FILE "input_output/input_spritz.txt"
 // #define OUTPUT_FILE "input_output/output_spritz.txt"
@@ -27,58 +29,44 @@ int main() {
         return -1;
     }
 
-    long int n_bars, n_radii;
+    uint16_t n_bars, n_radii; // 1 - 10e5 
 
-    fscanf(input, "%ld %ld", &n_bars, &n_radii);
+    fscanf(input, "%hu %hu", &n_bars, &n_radii);
 
-    if (n_bars == 0) {
-        return -1;
+    long double *data = malloc(n_bars * sizeof(long double));
+    printf("bars = %hu radii = %hu\n", n_bars, n_radii);
+
+    uint32_t i, x, y, z;
+
+    for (i = 0; i < n_bars; i++) {
+        fscanf(input, "%u %u %u", &x, &y, &z);
+        data[i] = sqrt(pow(x,2) + pow(y,2) + pow(z,2));
     }
 
-    long int x, y, z;    
+    print_array(data, n_bars);
+    //insertion_sort(data, 0, n_bars - 1);
+    merge_sort(data, 0, n_bars - 1);
 
-    fscanf(input, "%ld %ld %ld", &x, &y, &z);
-    long double distance = sqrt(pow(x,2) + pow(y,2) + pow(z,2));
+    FILE *output = fopen(OUTPUT_FILE, "w");
 
-    node_t * bars_list = NULL;
-    bars_list = (node_t *) malloc(sizeof(node_t));
+    uint32_t j, r, count;
 
-    if (bars_list == NULL) {
-        return -1;
-    }
-
-    bars_list->val = distance;
-    bars_list->count = 1;
-    bars_list->next = NULL;
-
-    int i;
-    for (i = 1; i < n_bars; i++) {
-        x = y = z = 0;
-        fscanf(input, "%ld %ld %ld", &x, &y, &z);
-        distance = sqrt(pow(x,2) + pow(y,2) + pow(z,2));
-        ordered_insert(bars_list, distance);
-    }
-
-    FILE *output = fopen(OUTPUT_FILE, "w");;
-
-    int j;
-    for (j = 0; j < n_radii; j++) {
-        node_t * current = bars_list;
-        long int radius, count;
-
-        fscanf(input, "%ld", &radius);
-        
+    print_array(data, n_bars);
+    for (i = 0; i < n_radii; i++) {
+        fscanf(input, "%u", &r);
         count = 0;
-        while (current != NULL && current->val <= radius) {
-            
-            count += current->count;
-            current = current->next;
-        }   
-        fprintf(output, "%ld\n", count);
-        current = bars_list;
+        for (j = 0; j < n_bars; j++) {
+            printf("data[%u] = %.2Lf radius = %u\n", j, data[j], r);
+            if (data[j] > r) {
+                break;
+            }
+            count += 1;
+        }
+        fprintf(output, "%u\n", count);
+        r = 0;
     }
 
-    free(bars_list);
+    free(data);
     fclose(input);
     fclose(output);
 
