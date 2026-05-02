@@ -1,0 +1,7 @@
+10 5
+abcdeabhij
+3 abc
+4 bcdf
+3 bcd
+3 cde
+2 ab

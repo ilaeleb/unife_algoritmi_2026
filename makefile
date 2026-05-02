@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Iinclude
-DEPS = include/utils.h include/sort.h 
-COMMON_OBJS = src/utils.o src/sort.o 
+DEPS = include/utils.h include/sort.h include/pattern.h
+COMMON_OBJS = src/utils.o src/sort.o src/pattern.o 
 BIN_DIR = bin
 TARGETS = $(BIN_DIR)/* 
 
@@ -13,6 +13,9 @@ $(BIN_DIR)/spritz: src/spritz.o $(COMMON_OBJS)
 $(BIN_DIR)/main: src/main.o $(COMMON_OBJS)
 	$(CC) -o $@ $^
 
+$(BIN_DIR)/firma: src/firma.o $(COMMON_OBJS)
+	$(CC) -o $@ $^
+
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
@@ -21,3 +24,4 @@ clean:
 
 spritz: $(BIN_DIR)/spritz
 main: $(BIN_DIR)/main
+firma: $(BIN_DIR)/firma
