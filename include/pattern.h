@@ -5,13 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// La firma può essere lunga 10^6 caratteri 
-
 typedef struct {
     char letter;
-    uint32_t *values;
+    uint8_t *values;
 } delta;
 
 delta *compute_delta_matrix(char *pattern, uint8_t lenght);
+int32_t search_pattern(char *pattern, char *text, uint8_t pattern_lenght, uint32_t text_lenght);
 
 #endif
