@@ -16,6 +16,9 @@ $(BIN_DIR)/main: src/main.o $(COMMON_OBJS)
 $(BIN_DIR)/firma: src/firma.o $(COMMON_OBJS)
 	$(CC) -o $@ $^
 
+$(BIN_DIR)/firma_linux: src/firma_linux.o $(COMMON_OBJS)
+	$(CC) -o $@ $^
+
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
@@ -25,3 +28,4 @@ clean:
 spritz: $(BIN_DIR)/spritz
 main: $(BIN_DIR)/main
 firma: $(BIN_DIR)/firma
+firma_linux: $(BIN_DIR)/firma_linux
