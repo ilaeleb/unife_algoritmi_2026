@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> 
 
 typedef struct {
     char letter;
@@ -11,6 +12,8 @@ typedef struct {
 } delta;
 
 delta *compute_delta_matrix(char *pattern, uint8_t lenght);
-int32_t search_pattern(char *pattern, char *text, uint8_t pattern_lenght, uint32_t text_lenght);
+void print_indexes(char *pattern, char *text, uint8_t pattern_lenght, uint32_t text_lenght);
+uint16_t search_pattern(char *pattern, char *text, uint8_t pattern_lenght, uint32_t text_lenght, int32_t *index);
+void print_matrix(delta *matrix, uint8_t lenght);
 
 #endif
