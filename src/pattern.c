@@ -58,18 +58,21 @@ void print_indexes(char *pattern, char *text, uint8_t pattern_lenght, uint32_t t
     free(dmatrix);
 }
 
-uint16_t search_pattern(char *pattern, char *text, uint8_t pattern_lenght, uint32_t text_lenght, int32_t *index) {
+int32_t search_pattern(char *pattern, char *text, uint8_t pattern_lenght, uint32_t text_lenght, int32_t *index) {
     delta *dmatrix = compute_delta_matrix(pattern, pattern_lenght);
     
     int32_t i = 0, j = 0;
-    uint16_t count = 0;
+    int32_t count = 0;
     *index = -1;
+
+    //print_matrix(dmatrix, pattern_lenght);
 
     for (i = 0; i < text_lenght; i++) {
         j = dmatrix[text[i] - 97].values[j];
         if (j == pattern_lenght) {
             if (*index == -1) *index = i - pattern_lenght + 1;
-            count ++;
+            j = 0;
+            count++;
         }
     }
     free(dmatrix);  

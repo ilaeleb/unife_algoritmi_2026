@@ -1,10 +1,14 @@
 #include <x86intrin.h> 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include "pattern.h"
 
 #define INPUT_FILE "input_output/input_firma_big.txt"
 #define OUTPUT_FILE "input_output/output_firma_big.txt"
+
+// #define INPUT_FILE "input_output/input_firma_prova.txt"
+// #define OUTPUT_FILE "input_output/output_firma_prova.txt"
 
 // #define INPUT_FILE "input_output/input_firma_small.txt"
 // #define OUTPUT_FILE "input_output/output_firma_small.txt"
@@ -37,22 +41,25 @@ int main() {
 
     uint8_t pattern_lenght;
     char *pattern = malloc(20 * sizeof(char));;
-    int16_t i, *count = malloc(n_query * sizeof(int16_t));
-    int32_t *index = malloc(1 * sizeof(int32_t));
+    int32_t i, *count = calloc(n_query, sizeof(int32_t));
+    int32_t index = 0;
 
     for (i = 0; i < n_query; i++) {
         fscanf(input, "%hhu %s", &pattern_lenght, pattern);
-        count[i] = search_pattern(pattern, virus, pattern_lenght, virus_lenght, index);
-        fprintf(output, "%d\n", *index);
+        count[i] = search_pattern(pattern, virus, pattern_lenght, virus_lenght, &index);
+        if (i>18 && i<22) {
+            printf("\n%d - %d %s", i, count[i], pattern);
+        }
+        fprintf(output, "%d\n", index);
     }
 
     for (i = 0; i < n_query; i++) {
-        fprintf(output, "%hd\n", count[i]);
+        fprintf(output, "%d\n", count[i]);
     }
 
     fclose(input);
     fclose(output);
-    free(index);
+    free(count);
 
     end = __rdtsc();   
     double cpu_hz = 2.4e9;   // 2.4 GHz
