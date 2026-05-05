@@ -7,7 +7,7 @@ delta *compute_delta_matrix(char *pattern, uint8_t lenght) {
 
     for (ascii_letter = 97; ascii_letter <= 122; ascii_letter++) {
         matrix[ascii_letter - 97].letter = ascii_letter;
-        matrix[ascii_letter - 97].values = calloc(lenght, sizeof(uint8_t));
+        // matrix[ascii_letter - 97].values = calloc(lenght, sizeof(uint8_t));
     }    
 
     uint8_t pos = pattern[0] - 97;

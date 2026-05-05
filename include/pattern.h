@@ -8,7 +8,7 @@
 
 typedef struct {
     char letter;
-    uint8_t *values;
+    uint8_t values[20];
 } delta;
 
 delta *compute_delta_matrix(char *pattern, uint8_t lenght);
